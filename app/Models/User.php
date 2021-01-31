@@ -29,8 +29,8 @@ class User extends Authenticatable
         'password',
         'liked_posts',
         'disliked_posts',
-        'favourite_posts',
-        'favourite_categories',
+        'favorite_posts',
+        'favorite_categories',
         'preferences',
     ];
 

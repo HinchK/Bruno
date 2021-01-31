@@ -25,8 +25,8 @@ class CreateUsersTable extends Migration
             $table->text('profile_photo_path')->nullable();
             $table->json('liked_scores')->nullable();
             $table->json('disliked_scores')->nullable();
-            $table->json('favourite_scoress')->nullable();
-            $table->json('favourite_categories')->nullable();
+            $table->json('favorite_scores')->nullable();
+            $table->json('favorite_categories')->nullable();
             $table->json('preferences')->nullable();
             $table->timestamps();
         });
