@@ -1,0 +1,34 @@
+<?php
+
+use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
+
+class CreateImagesTable extends Migration
+{
+    /**
+     * Run the migrations.
+     *
+     * @return void
+     */
+    public function up()
+    {
+        $table->id();
+        $table->string('title');
+        $table->string('url');
+        $table->boolean('featured')->default(0);
+        $table->json('meta_data')->nullable();
+        $table->bigInteger('scorecard_id');
+        $table->timestamps();
+    }
+
+    /**
+     * Reverse the migrations.
+     *
+     * @return void
+     */
+    public function down()
+    {
+        Schema::dropIfExists('images');
+    }
+}

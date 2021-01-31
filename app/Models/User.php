@@ -27,6 +27,11 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'liked_posts',
+        'disliked_posts',
+        'favourite_posts',
+        'favourite_categories',
+        'preferences',
     ];
 
     /**
@@ -58,4 +63,13 @@ class User extends Authenticatable
     protected $appends = [
         'profile_photo_url',
     ];
+
+    public function comments(){
+        return $this->hasMany(Comment::class, 'golfer_id', 'id');
+    }
+
+    public function scores(){
+        return $this->hasMany(Scorecard::class, 'golfer_id', 'id');
+    }
+
 }
