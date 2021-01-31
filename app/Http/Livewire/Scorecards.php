@@ -4,6 +4,7 @@ namespace App\Http\Livewire;
 
 use App\Models\Image;
 use App\Models\Tag;
+use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
 use Livewire\WithFileUploads;
 use App\Models\Scorecard;

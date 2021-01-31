@@ -7,11 +7,11 @@ use App\Models\Scorecard as ScorecardModel;
 
 class Scorecard extends Component
 {
-    public $scorecard;
+    public $scorecards;
 
     public function mount($id)
     {
-        $this->scorecard = ScorecardModel::with(['golfer', 'comments', 'category', 'images', 'videos', 'tags'])->find($id);
+        $this->scorecards = ScorecardModel::with(['golfer', 'comments', 'category', 'images', 'videos', 'tags'])->find($id);
     }
 
     public function render()

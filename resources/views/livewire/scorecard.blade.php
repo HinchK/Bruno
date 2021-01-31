@@ -7,33 +7,33 @@
     <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
         <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg px-4 py-4">
             <div class="grid gap-4">
-                <div class="font-bold text-xl mb-2">{{ $scorecard->title }}</div>
+                <div class="font-bold text-xl mb-2">{{ $scorecards->title }}</div>
                 <div class="flex">
-                    by&nbsp;<span class="italic">{{ $scorecard->golfer->name  }}</span>
-                    &nbsp;in&nbsp;<a href="{{ url('dashboard/categories/' . $scorecard->category->id . '/scores') }}"
-                                     class="underline">{{ $scorecard->category->title }}</a>
-                    &nbsp;on&nbsp;{{ $scorecard->updated_at->format('F, d Y') }}
+                    by&nbsp;<span class="italic">{{ $scorecards->golfer->name  }}</span>
+                    &nbsp;in&nbsp;<a href="{{ url('dashboard/categories/' . $scorecards->category->id . '/scores') }}"
+                                     class="underline">{{ $scorecards->category->title }}</a>
+                    &nbsp;on&nbsp;{{ $scorecards->updated_at->format('F, d Y') }}
                 </div>
                 <div class="grid grid-flow-col">
-                    @foreach ($scorecard->images as $image)
+                    @foreach ($scorecards->images as $image)
                         <div class="px-6 py-4">
                             <img src="{{ $image->url }}" alt="{{ $image->description }}" width="300" height="200">
                         </div>
                     @endforeach
                 </div>
                 <div class="grid grid-flow-col">
-                    @foreach ($scorecard->videos as $video)
+                    @foreach ($scorecards->videos as $video)
                         <div class="px-6 py-4">
                             <img src="{{ $video->url }}" alt="{{ $video->title }}" width="300" height="200">
                         </div>
                     @endforeach
                 </div>
                 <div class="text-gray-700 text-base">
-                    {!! $scorecard->content !!}
+                    {!! $scorecards->content !!}
                 </div>
                 <div class="flex">
                     @php
-                        $tags=$scorecard->tags->pluck('id', 'title');
+                        $tags=$scorecards->tags->pluck('id', 'title');
                     @endphp
                     @if (count($tags) > 0)
                         Tags:
@@ -43,14 +43,14 @@
                         @endforeach
                     @endif
                 </div>
-                @if ($scorecard->comments->count())
+                @if ($scorecards->comments->count())
                     <div class="text-base">
-                        <p class="text-gray-900 pt-2 pb-4">{{ $scorecard->comments->count() }}
-                            @if ($scorecard->comments->count() > 1) Responses @else Response
+                        <p class="text-gray-900 pt-2 pb-4">{{ $scorecards->comments->count() }}
+                            @if ($scorecards->comments->count() > 1) Responses @else Response
                             @endif
                         </p>
                         <div class="bg-gray-100 overflow-hidden shadow-xl px-6 pt-4">
-                            @foreach ($scorecard->comments as $comment)
+                            @foreach ($scorecards->comments as $comment)
                                 <div>
                                     <p class="text-gray-500 font-bold">
                                         {{ $comment->golfer->name }}</p>
