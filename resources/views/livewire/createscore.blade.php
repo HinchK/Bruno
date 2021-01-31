@@ -21,7 +21,7 @@
                             @error('title') <span class="text-red-500">{{ $message }}</span>@enderror
                         </div>
                         <div class="mb-4">
-                            <label for="content" class="block text-gray-700 text-sm font-bold mb-2">Content:</label>
+                            <label for="content" class="block text-gray-700 text-sm font-bold mb-2">Notes:</label>
                             <textarea rows="10"
                                       class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                                       id="content" wire:model="content" placeholder="Enter Content"></textarea>
@@ -90,5 +90,4 @@
         </div>
 
     </div>
-</div>
 </div>
