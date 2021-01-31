@@ -13,13 +13,15 @@ class CreateImagesTable extends Migration
      */
     public function up()
     {
-        $table->id();
-        $table->string('title');
-        $table->string('url');
-        $table->boolean('featured')->default(0);
-        $table->json('meta_data')->nullable();
-        $table->bigInteger('scorecard_id');
-        $table->timestamps();
+        Schema::create('images', function (Blueprint $table) {
+            $table->id();
+            $table->string('title');
+            $table->string('url');
+            $table->boolean('featured')->default(0);
+            $table->json('meta_data')->nullable();
+            $table->bigInteger('scorecard_id');
+            $table->timestamps();
+        });
     }
 
     /**

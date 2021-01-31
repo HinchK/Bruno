@@ -14,7 +14,6 @@ class CreateScorecardTagTable extends Migration
     public function up()
     {
         Schema::create('scorecard_tag', function (Blueprint $table) {
-            $table->id();
             $table->bigInteger('scorecard_id');
             $table->bigInteger('tag_id');
             $table->primary(['scorecard_id', 'tag_id']);
