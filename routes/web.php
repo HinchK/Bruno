@@ -1,6 +1,6 @@
 <?php
 
-use App\Http\Livewire\Tagscores;
+
 use Illuminate\Support\Facades\Route;
 
 
@@ -9,6 +9,7 @@ use App\Http\Livewire\Categoryscores;
 use App\Http\Livewire\Scorecards;
 use App\Http\Livewire\Scorecard as s;
 use App\Http\Livewire\Tags;
+use App\Http\Livewire\Tagscores;
 
 /*
 |--------------------------------------------------------------------------

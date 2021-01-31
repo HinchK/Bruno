@@ -2,17 +2,24 @@
 
 namespace App\Http\Livewire;
 
+use App\Models\Image;
+use App\Models\Tag;
 use Livewire\Component;
 use Livewire\WithFileUploads;
 use App\Models\Scorecard;
 use App\Models\Category;
+use Livewire\WithPagination;
 
 class Scorecards extends Component
 {
     use WithPagination;
     use WithFileUploads;
 
-    public $title, $content, $category, $post_id;
+    public $title;
+    public $content;
+    public $category;
+    public $scorecard_id;
+    public $score;
     public $tagids = array();
     public $photos = [];
     public $isOpen = 0;
@@ -36,29 +43,29 @@ class Scorecards extends Component
         ]);
 
         // Update or Insert Post
-        $post = Post::updateOrCreate(['id' => $this->post_id], [
+        $scorecard = Scorecard::updateOrCreate(['id' => $this->scorecard_id], [
             'title' => $this->title,
             'content' => $this->content,
             'category_id' => intVal($this->category),
-            'author_id' => Auth::user()->id,
+            'score' => $this->score,
+            'golfer_id' => Auth::user()->id,
         ]);
 
         // Image upload and store name in db
         if (count($this->photos) > 0) {
-            Image::where('post_id', $post->id)->delete();
+            Image::where('scorecard_id', $scorecard->id)->delete();
             $counter = 0;
             foreach ($this->photos as $photo) {
-
                 $storedImage = $photo->store('public/photos');
 
                 $featured = false;
-                if($counter == 0 ){
+                if ($counter == 0) {
                     $featured = true;
                 }
                 Image::create([
                     'url' => url('storage'. Str::substr($storedImage, 6)),
                     'title' => '-',
-                    'post_id' => $post->id,
+                    'scorecard_id' => $scorecard->id,
                     'featured' => $featured
                 ]);
                 $counter++;
@@ -67,11 +74,11 @@ class Scorecards extends Component
 
         // Post Tag mapping
         if (count($this->tagids) > 0) {
-            DB::table('post_tag')->where('post_id', $post->id)->delete();
+            DB::table('scorecard_tag')->where('scorecard_id', $scorecard-$this->id)->delete();
 
             foreach ($this->tagids as $tagid) {
-                DB::table('post_tag')->insert([
-                    'post_id' => $post->id,
+                DB::table('scorecard_tag')->insert([
+                    'scorecard_id' => $scorecard->id,
                     'tag_id' => intVal($tagid),
                     'created_at' => now(),
                     'updated_at' => now(),
@@ -81,7 +88,7 @@ class Scorecards extends Component
 
         session()->flash(
             'message',
-            $this->post_id ? 'Post Updated Successfully.' : 'Post Created Successfully.'
+            $this->scorecard_id ? 'Scorecard Updated Successfully.' : 'Scorecard Created Successfully.'
         );
 
         $this->closeModal();
@@ -90,10 +97,10 @@ class Scorecards extends Component
 
     public function delete($id)
     {
-        Post::find($id)->delete();
-        DB::table('post_tag')->where('post_id', $id)->delete();
+        Scorecard::find($id)->delete();
+        DB::table('scorecard_tag')->where('scorecard_id', $id)->delete();
 
-        session()->flash('message', 'Post Deleted Successfully.');
+        session()->flash('message', 'Scorecard Deleted Successfully.');
     }
 
     public function edit($id)
@@ -102,9 +109,9 @@ class Scorecards extends Component
 
         $this->scorecard_id = $id;
         $this->title = $scorecard->title;
-        $this->content = $post->content;
-        $this->category = $post->category_id;
-        $this->tagids = $post->tags->pluck('id');
+        $this->content = $scorecard->content;
+        $this->category = $scorecard->category_id;
+        $this->tagids = $scorecard->tags->pluck('id');
 
         $this->openModal();
     }
@@ -133,6 +140,6 @@ class Scorecards extends Component
         $this->tagids = null;
         $this->photos = null;
         $this->score = null;
-        $this->score_id = null;
+        $this->scorecard_id = null;
     }
 }
