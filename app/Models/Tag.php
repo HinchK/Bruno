@@ -11,7 +11,7 @@ class Tag extends Model
 
     protected $fillable = [ 'title'];
 
-    public function scores(){
+    public function scorecards(){
         return $this->belongsToMany(Scorecard::class);
     }
 }

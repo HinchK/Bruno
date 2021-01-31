@@ -13,6 +13,6 @@ class Video extends Model
         'description',
         'url',
         'meta_data',
-        'post_id',
+        'scorecard_id',
     ];
 }

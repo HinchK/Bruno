@@ -15,7 +15,7 @@ class Category extends Model
         'meta_data',
     ];
 
-    public function scores(){
+    public function scorecards(){
         return $this->hasMany(Scorecard::class);
     }
 }

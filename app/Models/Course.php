@@ -14,7 +14,7 @@ class Course extends Model
         'par',
         ];
 
-    public function scores(){
+    public function scorecards(){
         return $this->belongsToMany(Scorecard::class);
     }
 }
