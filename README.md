@@ -2,7 +2,9 @@
 
 Golf, like life, is the only game you can play every day and get worse.  Bruno is here to help.
 
-Note: this application is used in demonstrating and training DevOps and SRE best practices and steps in involved in taking any Open Source application and making it Secure, compliant, and easy to support for Enterprise grade businesses. 
+Note: this application is used in demonstrating and training DevOps/SRE best-practices towards "Enterprising" Open-Source applications.   There are steps involved in taking any Open Source application and building a business out of it; I've worked with increadible developers who become deer-in-headlights when it comes to handling outages or understanding System Administration for Enterprise concepts.  
+
+Are you having difficulties completing projects on time?  Is your focused application-development progress being slowed down due to concerns about security, compliance, supportability, and/or catering to Enterprise grade businesses?   Stop concering yourself with being a "CEO", that is a dark-side path for fools. Drop your ego and ask for help!
 
 <p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400"></a></p>
 
