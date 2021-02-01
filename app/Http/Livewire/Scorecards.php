@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire;
 
+use App\Models\Course;
 use App\Models\Image;
 use App\Models\Tag;
 use Illuminate\Support\Facades\Auth;
@@ -82,7 +83,7 @@ class Scorecards extends Component
 
         // Scorecard Tag mapping
         if (count($this->tagids) > 0) {
-            DB::table('scorecard_tag')->where('scorecard_id', $scorecard-$this->id)->delete();
+            DB::table('scorecard_tag')->where('scorecard_id', $scorecard->id)->delete();
 
             foreach ($this->tagids as $tagid) {
                 DB::table('scorecard_tag')->insert([

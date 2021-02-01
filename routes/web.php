@@ -64,7 +64,7 @@ Route::get('dashboard/tags', Tags::class)->name('tags');
 Route::get('dashboard/tags/{id}/scores', Tagscores::class);
 
 Route::get('dashboard/courses', Courses::class)->name('courses');
-Route::get('dashboard/courses/{id}/scores', C::class);
+//Route::get('dashboard/courses/{id}/scores', CourseScores::class);
 
 
 
