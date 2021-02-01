@@ -11,10 +11,10 @@ use App\Models\Tag;
 class TagApiController extends Controller
 {
 
-    public function posts($id)
+    public function scorecards($id)
     {
         $tag = Tag::find($id);
-        $posts = $tag->posts()->with('author', 'category', 'images', 'videos', 'comments')->orderBy('id', 'desc')->paginate();
-        return PostResource::collection($posts);
+        $scorecards = $tag->scorecards()->with('golfer', 'category', 'course', 'images', 'videos', 'comments')->orderBy('id', 'desc')->paginate();
+        return ScorecardResource::collection($scorecards);
     }
 }

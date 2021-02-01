@@ -6,7 +6,7 @@
         </div>
 
         <!-- This element is to trick the browser into centering the modal contents. -->
-        <span class="hidden sm:inline-block sm:align-middle sm:h-screen"></span>​
+        <span class="hidden sm:inline-block sm:align-middle sm:h-screen"></span>JHHjKh
 
         <div class="inline-block align-bottom bg-white rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-lg sm:w-full"
              role="dialog" aria-modal="true" aria-labelledby="modal-headline">
@@ -14,15 +14,33 @@
                 <div class="bg-white px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
                     <div class="">
                         <div class="mb-4">
-                            <label for="title" class="block text-gray-700 text-sm font-bold mb-2">Title:</label>
+                            <label for="title" class="block text-gray-700 text-sm font-bold mb-2">Scorecard::</label>
                             <input type="text"
                                    class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                                    id="title" placeholder="Enter Title" wire:model="title">
                             @error('title') <span class="text-red-500">{{ $message }}</span>@enderror
                         </div>
                         <div class="mb-4">
+                            <label for="course" class="block text-gray-700 text-sm font-bold mb-2">Course:</label>
+                            <select name="course" id="course" wire:model="course"
+                                    class="shadow appearance-none w-full border text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:shadow-outline">
+                                <option value="" selected>Select Golf Course:</option>
+                                @foreach ($courses as $course)
+                                    <option value="{{ $course->id }}">{{ $course->title }}</option>
+                                @endforeach
+                            </select>
+                            @error('course') <span class="text-red-500">{{ $message }}</span>@enderror
+                        </div>
+                        <div class="mb-4">
+                            <label for="score" class="block text-gray-700 text-sm font-bold mb-2">Score:</label>
+                            <input type="number"
+                                   class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                                   id="score" placeholder="Round Score" wire:model="score">
+                            @error('score') <span class="text-red-500">{{ $message }}</span>@enderror
+                        </div>
+                        <div class="mb-4">
                             <label for="content" class="block text-gray-700 text-sm font-bold mb-2">Notes:</label>
-                            <textarea rows="10"
+                            <textarea rows="5"
                                       class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                                       id="content" wire:model="content" placeholder="Enter Content"></textarea>
                             @error('content') <span class="text-red-500">{{ $message }}</span>@enderror
@@ -47,7 +65,7 @@
                                  x-on:livewire-upload-progress="progress = $event.detail.progress">
                                 <div class="flex">
                                     <label for="photos"
-                                           class="block text-gray-700 text-sm font-bold mb-2">Images:</label>
+                                           class="block text-gray-700 text-sm font-bold mb-2">Photo:</label>
                                     {{-- <div class="px-2" wire:loading
                                               wire:target="photos">Uploading</div> --}}
                                     <div x-show="isUploading" class="px-2">

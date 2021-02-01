@@ -64,12 +64,13 @@ class User extends Authenticatable
         'profile_photo_url',
     ];
 
-    public function comments(){
+    public function comments()
+    {
         return $this->hasMany(Comment::class, 'golfer_id', 'id');
     }
 
-    public function scores(){
+    public function scores()
+    {
         return $this->hasMany(Scorecard::class, 'golfer_id', 'id');
     }
-
 }

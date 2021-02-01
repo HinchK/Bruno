@@ -5,6 +5,8 @@ namespace App\Http\Livewire;
 use App\Models\Image;
 use App\Models\Tag;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Str;
 use Livewire\Component;
 use Livewire\WithFileUploads;
 use App\Models\Scorecard;
@@ -19,6 +21,7 @@ class Scorecards extends Component
     public $title;
     public $content;
     public $category;
+    public $course;
     public $scorecard_id;
     public $score;
     public $tagids = array();
@@ -30,6 +33,7 @@ class Scorecards extends Component
         return view('livewire.scorecards', [
             'scores' => Scorecard::orderBy('id', 'desc')->paginate(),
             'categories' => Category::all(),
+            'courses' => Course::all(),
             'tags' => Tag::all(),
         ]);
     }
@@ -40,6 +44,8 @@ class Scorecards extends Component
             'title' => 'required',
             'content' => 'required',
             'category' => 'required',
+            'course' => 'required',
+            'score' => 'required',
             'photos.*' => 'image|max:1024',
         ]);
 
@@ -48,6 +54,7 @@ class Scorecards extends Component
             'title' => $this->title,
             'content' => $this->content,
             'category_id' => intVal($this->category),
+            'course_id' => intVal($this->course),
             'score' => $this->score,
             'golfer_id' => Auth::user()->id,
         ]);
@@ -73,7 +80,7 @@ class Scorecards extends Component
             }
         }
 
-        // Post Tag mapping
+        // Scorecard Tag mapping
         if (count($this->tagids) > 0) {
             DB::table('scorecard_tag')->where('scorecard_id', $scorecard-$this->id)->delete();
 
@@ -110,9 +117,11 @@ class Scorecards extends Component
 
         $this->scorecard_id = $id;
         $this->title = $scorecard->title;
+        $this->score = $scorecard->score;
         $this->content = $scorecard->content;
         $this->category = $scorecard->category_id;
         $this->tagids = $scorecard->tags->pluck('id');
+        $this->course = $scorecard->course_id;
 
         $this->openModal();
     }
@@ -138,6 +147,7 @@ class Scorecards extends Component
         $this->title = null;
         $this->content = null;
         $this->category = null;
+        $this->course = null;
         $this->tagids = null;
         $this->photos = null;
         $this->score = null;

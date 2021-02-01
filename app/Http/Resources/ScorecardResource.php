@@ -29,6 +29,7 @@ class ScorecardResource extends JsonResource
             'comments' => CommentResource::collection($this->whenLoaded('comments')),
             'golfer' => new UserResource($this->whenLoaded('golfer')),
             'category' => new CategoryResource($this->whenLoaded('category')),
+            'course' => new CourseResource($this->whenLoaded('course')),
         ];
     }
 }

@@ -17,7 +17,7 @@
                 <div class="grid grid-flow-col">
                     @foreach ($scorecards->images as $image)
                         <div class="px-6 py-4">
-                            <img src="{{ $image->url }}" alt="{{ $image->description }}" width="300" height="200">
+                            <img src="{{ $image->url }}" alt="{{ $image->description }}" width="150" height="100">
                         </div>
                     @endforeach
                 </div>

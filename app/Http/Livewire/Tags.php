@@ -24,9 +24,14 @@ class Tags extends Component
             'title' => 'required',
         ]);
 
-        Tag::updateOrCreate(['id' => $this->tag_id], [
-            'title' => $this->title,
-        ]);
+        Tag::updateOrCreate(
+            [
+                'id' => $this->tag_id
+            ],
+            [
+                'title' => $this->title,
+            ]
+        );
 
         session()->flash(
             'message',

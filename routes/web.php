@@ -10,6 +10,7 @@ use App\Http\Livewire\Scorecards;
 use App\Http\Livewire\Scorecard as s;
 use App\Http\Livewire\Tags;
 use App\Http\Livewire\Tagscores;
+use App\Http\Livewire\Courses;
 
 /*
 |--------------------------------------------------------------------------
@@ -61,6 +62,9 @@ Route::get('dashboard/scores/{id}', s::class);
 
 Route::get('dashboard/tags', Tags::class)->name('tags');
 Route::get('dashboard/tags/{id}/scores', Tagscores::class);
+
+Route::get('dashboard/courses', Courses::class)->name('courses');
+Route::get('dashboard/courses/{id}/scores', C::class);
 
 
 

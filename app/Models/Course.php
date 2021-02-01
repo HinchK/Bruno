@@ -15,6 +15,6 @@ class Course extends Model
         ];
 
     public function scorecards(){
-        return $this->belongsToMany(Scorecard::class);
+        return $this->hasMany(Scorecard::class);
     }
 }

@@ -18,7 +18,7 @@ class CommentResource extends JsonResource
             'comment_id' => $this->id,
             'comment' => $this->comment,
             'golfer' => new UserResource($this->whenLoaded('golfer')),
-            'post' => new ScorecardResource($this->whenLoaded('score')),
+            'scorecard' => new ScorecardResource($this->whenLoaded('scorecard')),
         ];
     }
 }

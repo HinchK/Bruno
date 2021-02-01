@@ -12,15 +12,15 @@ class ScorecardApiController extends Controller
 {
     public function index()
     {
-        $scorecards = Scorecard::with(['golfer', 'category', 'tags', 'images', 'videos', 'comments'])->paginate();
+        $scorecards = Scorecard::with(['golfer', 'category', 'course', 'tags', 'images', 'videos', 'comments'])->paginate();
         return ScorecardResource::collection($scorecards);
     }
 
     public function show($id)
     {
         $scorecard = Scorecard::with([
-            'golfer', 'category', 'tags', 'images', 'videos', 'comments' ,'score' => function ($query) {
-                $query->with(['author']);
+            'golfer', 'category', 'course', 'tags', 'images', 'videos', 'comments' => function ($query) {
+                $query->with(['golfer']);
             }
         ])->find($id);
         return new ScorecardResource($scorecard);
