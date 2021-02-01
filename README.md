@@ -6,6 +6,11 @@
 <a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
 <a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
 </p>
+# Bruno
+
+Golf, like life, is the only game you can play every day and get worse.  Bruno is here to help.
+
+Note: this application is used in demonstrating and training DevOps and SRE best practices and steps in involved in taking any Open Source application and making it Secure, compliant, and easy to support for Enterprise grade businesses. 
 
 ## About Laravel
 
