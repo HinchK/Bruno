@@ -9,7 +9,7 @@
     "license": "MIT",
     "require": {
         "php": "^7.3|^8.0",
-        "enlightn/enlightn": "^1.4",
+        "enlightn/enlightn": "^1.8",
         "fideloper/proxy": "^4.4",
         "fruitcake/laravel-cors": "^2.0",
         "guzzlehttp/guzzle": "^7.0.1",
@@ -30,8 +30,11 @@
         "mockery/mockery": "^1.4.2",
         "nunomaduro/collision": "^5.0",
         "nunomaduro/larastan": "^0.6.13",
+        "orklah/psalm-insane-comparison": "^1.0",
         "phpunit/phpunit": "^9.3.3",
-        "spatie/laravel-ray": "^1.9"
+        "psalm/plugin-laravel": "^1.4",
+        "spatie/laravel-ray": "^1.9",
+        "vimeo/psalm": "^4.4"
     },
     "config": {
         "optimize-autoloader": true,
