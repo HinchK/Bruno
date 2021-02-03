@@ -2,6 +2,11 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Api\UserApiController;
+use App\Http\Controllers\Api\CategoryApiController;
+use App\Http\Controllers\Api\ScorecardApiController;
+use App\Http\Controllers\Api\TagApiController;
+use App\Http\Controllers\Api\CommentApiController;
 
 /*
 |--------------------------------------------------------------------------
@@ -39,5 +44,5 @@ Route::get('tags/{id}/scorecards', [TagApiController::class, 'posts']);
 Route::middleware('auth:sanctum')->group(function () {
     Route::post('comments/scorecards', [CommentApiController::class, 'store']);
     Route::post('logout', [UserApiController::class, 'logout']);
-    Route::post('update-password',[UserApiController::class, 'updatePassword']);
+    Route::post('update-password', [UserApiController::class, 'updatePassword']);
 });

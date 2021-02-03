@@ -33,7 +33,7 @@
                 </div>
                 <div class="flex">
                     @php
-                        $tags=$scorecards->tags->pluck('id', 'title');
+                        $tags=$scorecards->tags->pluck('id', 'title')
                     @endphp
                     @if (count($tags) > 0)
                         Tags:
