@@ -103,8 +103,6 @@ class UserApiController extends Controller
                     case Password::INVALID_USER:
                         return response()->json(['errors' => 'We can\'t find a user with that email address.'], 404);
                 }
-            } catch (\Swift_TransportException $ex) {
-                return response()->json(['errors' => $ex->getMessage(), 500]);
             } catch (Exception $ex) {
                 return response()->json(['errors' => $ex->getMessage(), 500]);
             }

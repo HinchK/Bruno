@@ -54,8 +54,8 @@ class Scorecards extends Component
         $scorecard = Scorecard::updateOrCreate(['id' => $this->scorecard_id], [
             'title' => $this->title,
             'content' => $this->content,
-            'category_id' => intVal($this->category),
-            'course_id' => intVal($this->course),
+            'category_id' => intval($this->category),
+            'course_id' => intval($this->course),
             'score' => $this->score,
             'golfer_id' => Auth::user()->id,
         ]);
@@ -88,7 +88,7 @@ class Scorecards extends Component
             foreach ($this->tagids as $tagid) {
                 DB::table('scorecard_tag')->insert([
                     'scorecard_id' => $scorecard->id,
-                    'tag_id' => intVal($tagid),
+                    'tag_id' => intval($tagid),
                     'created_at' => now(),
                     'updated_at' => now(),
                 ]);

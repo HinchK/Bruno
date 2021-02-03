@@ -17,7 +17,7 @@ class CommentResource extends JsonResource
         return [
             'comment_id' => $this->id,
             'comment' => $this->comment,
-            'golfer' => new UserResource($this->whenLoaded('golfer')),
+            'golfer_id' => new UserResource($this->whenLoaded('golfer_id')),
             'scorecard' => new ScorecardResource($this->whenLoaded('scorecard')),
         ];
     }

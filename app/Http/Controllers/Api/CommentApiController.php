@@ -17,8 +17,8 @@ class CommentApiController extends Controller
         ]);
         $comment = new Comment();
         $comment->comment = $request->get('comment');
-        $comment->post_id =  $request->get('id');
-        $comment->author_id = $request->user()->id;
+        $comment->score_id =  $request->get('id');
+        $comment->golfer_id = $request->user()->id;
         $comment->save();
         return new CommentResource($comment);
     }

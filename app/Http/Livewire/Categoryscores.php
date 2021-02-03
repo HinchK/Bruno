@@ -5,6 +5,8 @@ namespace App\Http\Livewire;
 use App\Models\Category;
 use App\Models\Scorecard;
 use App\Models\Tag;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Livewire\Component;
 use Livewire\WithPagination;
 
@@ -44,7 +46,7 @@ class Categoryscores extends Component
         $score = Scorecard::updateOrCreate(['id' => $this->score_id], [
             'title' => $this->title,
             'content' => $this->content,
-            'category_id' => intVal($this->category),
+            'category_id' => intval($this->category),
             'score' => $this->score,
             'golfer_id' => Auth::user()->id,
         ]);
@@ -56,7 +58,7 @@ class Categoryscores extends Component
             foreach ($this->tagids as $tagid) {
                 DB::table('scorecard_tag')->insert([
                     'score_id' => $score->id,
-                    'tag_id' => intVal($tagid),
+                    'tag_id' => intval($tagid),
                     'created_at' => now(),
                     'updated_at' => now(),
                 ]);

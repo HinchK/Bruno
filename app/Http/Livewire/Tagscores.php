@@ -47,7 +47,7 @@ class Tagscores extends Component
         $scorecard = Scorecard::updateOrCreate(['id' => $this->scorecard_id], [
             'title' => $this->title,
             'content' => $this->content,
-            'category_id' => intVal($this->category),
+            'category_id' => intval($this->category),
             'score' => $this->score,
             'golfer_id' => Auth::user()->id,
         ]);
@@ -59,7 +59,7 @@ class Tagscores extends Component
             foreach ($this->tagids as $tagid) {
                 DB::table('scorecard_tag')->insert([
                     'scorecard_id' => $scorecard->id,
-                    'tag_id' => intVal($tagid)
+                    'tag_id' => intval($tagid)
                 ]);
             }
         }
