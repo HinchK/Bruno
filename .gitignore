@@ -22,3 +22,4 @@ Homestead.json
 /.vagrant
 .phpunit.result.cache
 .php_cs.cache
+tools/php-cs-fixer/
