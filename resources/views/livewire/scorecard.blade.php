@@ -10,7 +10,10 @@
                 <div class="font-bold text-xl mb-2">{{ $scorecards->title }}</div>
                 <div class="flex">
                     by&nbsp;<span class="italic">{{ $scorecards->golfer->name  }}</span>
-                    &nbsp;in&nbsp;<a href="{{ url('dashboard/categories/' . $scorecards->category->id . '/scores') }}"
+                    &nbsp;at&nbsp;<a href="{{ url('dashboard/courses/' . $scorecards->course->id . '/scores') }}"
+                                     class="underline">{{ $scorecards->course->title }}</a>
+                    &nbsp;[Par: {{ $scorecards->course->par }}]
+                    <br/>&nbsp;in<a href="{{ url('dashboard/categories/' . $scorecards->category->id . '/scores') }}"
                                      class="underline">{{ $scorecards->category->title }}</a>
                     &nbsp;on&nbsp;{{ $scorecards->updated_at->format('F, d Y') }}
                 </div>

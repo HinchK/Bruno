@@ -16,7 +16,7 @@
                     </div>
                 </div>
             @endif
-            @if (Request::getPathInfo() == '/dashboard/scores')
+            @if (Request::getPathInfo() == '/dashboard/scorecards')
                 <button wire:click="create()"
                         class="inline-flex items-center px-4 py-2 my-3 bg-gray-800 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-gray-700 active:bg-gray-900 focus:outline-none focus:border-gray-900 focus:shadow-outline-gray disabled:opacity-25 transition ease-in-out duration-150">
                     Create New Scorecard
@@ -36,7 +36,7 @@
                             </p>
                         </div>
                         <div class="px-6 pt-4 pb-2">
-                            <a href="{{ url('dashboard/scores', $score->id) }}"
+                            <a href="{{ url('dashboard/scorecards', $score->id) }}"
                                class="inline-flex items-center px-4 py-2 bg-gray-800 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-gray-700 active:bg-gray-900 focus:outline-none focus:border-gray-900 focus:shadow-outline-gray disabled:opacity-25 transition ease-in-out duration-150">
                                 Read score
                             </a>
