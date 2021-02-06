@@ -1,49 +1,64 @@
-<div class="fixed z-10 inset-0 overflow-y-auto ease-out duration-400">
-    <div class="flex items-end justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0">
-
-        <div class="fixed inset-0 transition-opacity">
-            <div class="absolute inset-0 bg-gray-500 opacity-75"></div>
-        </div>
-
-        <!-- This element is to trick the browser into centering the modal contents. -->
-        <span class="hidden sm:inline-block sm:align-middle sm:h-screen"></span>hinchK
-
-        <div class="inline-block align-bottom bg-white rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-lg sm:w-full" role="dialog" aria-modal="true" aria-labelledby="modal-headline">
-            <form>
-                <div class="bg-white px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
-                    <div class="">
-                        <div class="mb-4">
-                            <label for="exampleFormControlInput1" class="block text-gray-700 text-sm font-bold mb-2">Course Name:</label>
-                            <input type="text" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="exampleFormControlInput1" placeholder="Enter Golf Course" wire:model="title">
-                            @error('title') <span class="text-red-500">{{ $message }}</span>@enderror
-                        </div>
-                        <div class="mb-4">
-                            <label for="exampleFormControlInput2" class="block text-gray-700 text-sm font-bold mb-2">Par::</label>
-                            <input type="number" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="exampleFormControlInput2" placeholder="72" wire:model="par">
-                            @error('par') <span class="text-red-500">{{ $message }}</span>@enderror
+<x-slot name="header">
+    <h2 class="font-semibold text-xl text-gray-800 leading-tight">
+        Courses
+    </h2>
+</x-slot>
+<div class="py-12">
+    <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+        <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg px-4 py-4">
+            @if (session()->has('message'))
+                <div class="bg-teal-100 border-t-4 border-teal-500 rounded-b text-teal-900 px-4 py-3 shadow-md my-3" role="alert">
+                    <div class="flex">
+                        <div>
+                            <p class="text-sm">{{ session('message') }}</p>
                         </div>
                     </div>
                 </div>
-
-                <div class="bg-gray-50 px-4 py-3 sm:px-6 sm:flex sm:flex-row-reverse">
-          <span class="flex w-full rounded-md shadow-sm sm:ml-3 sm:w-auto">
+            @endif
             <button
-                    wire:click.prevent="store()"
-                    type="button"
+                    wire:click="create()"
                     class="inline-flex items-center px-4 py-2 my-3 bg-gray-800 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-gray-700 active:bg-gray-900 focus:outline-none focus:border-gray-900 focus:shadow-outline-gray disabled:opacity-25 transition ease-in-out duration-150">
-              Save
+                Create New Course
             </button>
-          </span>
-                    <span class="mt-3 flex w-full rounded-md shadow-sm sm:mt-0 sm:w-auto">
-            <button
-                    wire:click="closeModal()"
-                    type="button"
-                    class="inline-flex items-center px-4 py-2 my-3 bg-white border border-gray-300 rounded-md font-semibold text-xs text-gray-700 uppercase tracking-widest shadow-sm hover:text-gray-500 focus:outline-none focus:border-blue-300 focus:shadow-outline-blue active:text-gray-800 active:bg-gray-50 transition ease-in-out duration-150">
-              Cancel
-            </button>
-          </span>
-            </form>
+            @if($isOpen)
+                @include('livewire.createcourse')
+            @endif
+            <table class="table-fixed w-full">
+                <thead>
+                <tr class="bg-gray-100">
+                    <th class="px-4 py-2 w-20">No.</th>
+                    <th class="px-4 py-2">Title</th>
+                    <th class="px-4 py-2">Color</th>
+                    <th class="px-4 py-2">Action</th>
+                </tr>
+                </thead>
+                <tbody>
+                <?php $count = 1; ?>
+                @foreach($courses as $course)
+                    <tr>
+                        <td class="border px-4 py-2"><?php echo $count++; ?></td>
+                        <td class="border px-4 py-2">{{ $course->title }}</td>
+                        <td class="border px-4 py-2"><span style="background-color: {{ $course->color }};">&emsp;</span> {{ $course->par }}</td>
+                        <td class="border px-4 py-2">
+                            <button
+                                    wire:click="edit({{ $course->id }})"
+                                    class="inline-flex items-center px-4 py-2 bg-gray-800 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-gray-700 active:bg-gray-900 focus:outline-none focus:border-gray-900 focus:shadow-outline-gray disabled:opacity-25 transition ease-in-out duration-150">
+                                Edit
+                            </button>
+                            <a href="{{ url('dashboard/courses/'. $course->id .'/scores') }}" class="inline-flex items-center px-4 py-2 bg-gray-800 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-gray-700 active:bg-gray-900 focus:outline-none focus:border-gray-900 focus:shadow-outline-gray disabled:opacity-25 transition ease-in-out duration-150">
+                                Show All Scorecards
+                            </a>
+                            <button
+                                    wire:click="delete({{ $course->id }})"
+                                    class="inline-flex items-center justify-center px-4 py-2 bg-red-600 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-red-500 focus:outline-none focus:border-red-700 focus:shadow-outline-red active:bg-red-600 transition ease-in-out duration-150">
+                                Delete
+                            </button>
+                        </td>
+                    </tr>
+                @endforeach
+                </tbody>
+            </table>
         </div>
-
     </div>
 </div>
+
