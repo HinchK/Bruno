@@ -27,14 +27,9 @@ class Courses extends Component
             'par' => 'required',
         ]);
 
-        Course::updateOrCreate(
+        Course::updateOrCreate(['id' => $this->course_id],
             [
-                'id' => $this->course_id
-            ],
-            [
-                'title' => $this->title
-            ],
-            [
+                'title' => $this->title,
                 'par' => $this->par
             ]
         );
