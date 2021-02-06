@@ -7,7 +7,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Livewire\Categories;
 use App\Http\Livewire\Categoryscores;
 use App\Http\Livewire\Scorecards;
-use App\Http\Livewire\Scorecard as s;
+use App\Http\Livewire\Scorecard;
 use App\Http\Livewire\Tags;
 use App\Http\Livewire\Tagscores;
 use App\Http\Livewire\Courses;
@@ -57,8 +57,8 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
 Route::get('dashboard/categories', Categories::class)->name('categories');
 Route::get('dashboard/categories/{id}/scores', Categoryscores::class);
 
-Route::get('dashboard/scores', Scorecards::class)->name('scores');
-Route::get('dashboard/scores/{id}', s::class);
+Route::get('dashboard/scorecards', Scorecards::class)->name('scores');
+Route::get('dashboard/scorecards/{id}', Scorecard::class);
 
 Route::get('dashboard/tags', Tags::class)->name('tags');
 Route::get('dashboard/tags/{id}/scores', Tagscores::class);
